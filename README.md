@@ -45,7 +45,7 @@ By issuer: Sovereign 32%, Corporate 28%, PSU NBFCs 27%, Banks 12%, Municipal 1%.
 
 3. **Development finance carries the loan market.** Development finance institutions or export credit
    agencies (IFC, JBIC, AFD, FMO, EDC, Clean Technology Fund) are lenders on **7 of the 10 loans** tracked.
-   Commercial-bank-only green loans (Zelestra, Serentica) are the exception.
+   Only three (Zelestra, Serentica and L&T) were funded by commercial banks alone.
 
 4. **Municipal green bonds are small but multiplying.** Ghaziabad, Pimpri-Chinchwad and Surat all issued in 2025,
    Surat at 8.00% with AA+ ratings, to fund solar, wind, e-bus depots and water treatment. Together they are
