@@ -68,3 +68,9 @@ def test_sll_kpis():
     assert b["count"] == 3 and b["with_named_kpis"] == 2
     jk = next(d for d in b["deals"] if d["issuer"].startswith("JK Tyre"))
     assert jk["kpis_named"] is False
+
+
+def test_every_get_endpoint_without_params():
+    for path in ["/", "/health", "/deals", "/deals/REC-2409", "/summary", "/issuers",
+                 "/sovereign/auctions", "/sovereign/greenium", "/sll/kpis", "/fx"]:
+        assert client.get(path).status_code == 200, path
