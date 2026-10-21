@@ -4,6 +4,8 @@ A deal-level tracker of **labelled green, ESG and sustainability-linked debt rai
 covering sovereign green bond auctions, PSU lenders, banks, corporates and municipalities from
 January 2023 to October 2026. Built in Python with a formula-driven Excel front end.
 
+🚀 **Live API:** https://india-green-finance-api.onrender.com · 📚 **Docs:** https://india-green-finance-api.onrender.com/docs
+
 📊 **Workbook:** [`output/India_Green_Finance_Tracker.xlsx`](output/India_Green_Finance_Tracker.xlsx)
 📁 **Data:** [`data/deals.csv`](data/deals.csv), 25 deals, each linked to its public source
 
