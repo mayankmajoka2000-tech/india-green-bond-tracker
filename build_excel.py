@@ -171,26 +171,10 @@ def build(df: pd.DataFrame) -> Path:
                                "Blank where the source gives none."), SUB
     hdr(sv, 4, ["Auction", "Tenor", "Notified (INR cr)", "Outcome", "Greenium (bps)", "What it tells you", "Source"],
         [14, 9, 14, 30, 12, 60, 10])
-    rows = [
-        ("Jan 2023", "5y / 10y", 8000, "Debut; >4x subscribed", 6,
-         "Strong debut demand, priced through conventional curve", "https://renewablewatch.in/2025/07/01/green-yields/"),
-        ("May 2024", "", 6000, "Cancelled: no pricing advantage", None,
-         "Government refused to issue without a greenium", "https://renewablewatch.in/2025/07/01/green-yields/"),
-        ("Aug 2024", "", 6000, "Only Rs 1,697 cr bid; cut-off 6.90%", None,
-         "Thin demand at short/medium tenors", "https://renewablewatch.in/2025/07/01/green-yields/"),
-        ("Nov 2024", "", 5000, "70% devolved on primary dealers (6.78-6.84%)", None,
-         "Banks unwilling to pay a greenium", "https://renewablewatch.in/2025/07/01/green-yields/"),
-        ("Jan 2025", "10y", None, "Rs 3,945 cr devolved on primary dealers", None,
-         "10-year green paper struggles", "https://www.business-standard.com/finance/news/rbi-partially-devolves-rs-3-945-cr-worth-of-10-year-sovereign-green-bonds-125013101508_1.html"),
-        ("Jun 2025", "30y", 5000, "All bids rejected", None,
-         "Investors sought higher yields than the government would pay", "https://www.business-standard.com/economy/news/rbi-rejects-30-year-green-bond-bids-as-investors-seek-higher-yields-125061300999_1.html"),
-        ("Apr 2026", "30y", None, "~2.5x subscribed; 7.50% coupon", 6,
-         "Largest greenium since 2023; insurers drive demand via 'infra' classification", "https://www.brecorder.com/news/amp/40418096"),
-        ("Aug 2026", "30y", 5000, "Sold in full", 4,
-         "H1 FY27 average greenium 4 bps, highest since launch", "https://www.brecorder.com/news/amp/40434824"),
-        ("Oct 2026 - Jan 2027", "30y", 15000, "Scheduled: 5 x Rs 3,000 cr", None,
-         "Government shifted green supply to 30-year, where demand exists", "https://goldenpi.com/blog/bond-news/india-sovereign-green-bonds-h2-fy27-15000-crore-issuance-schedule-30-year-auctions/"),
-    ]
+    sov = pd.read_csv(Path(__file__).parent / "data" / "sovereign_auctions.csv", keep_default_na=False)
+    num = lambda v: None if v == "" else int(float(v))
+    rows = [(r.auction, r.tenor, num(r.notified_inr_crore), r.outcome, num(r.greenium_bps), r.takeaway, r.source_url)
+            for r in sov.itertuples(index=False)]
     for i, row in enumerate(rows, 5):
         for c, v in enumerate(row[:6], 1):
             put(sv, i, c, v, BLUE if c in (3, 5) else B, NUM if c == 3 else ("0" if c == 5 else None),

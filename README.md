@@ -55,7 +55,30 @@ By issuer: Sovereign 32%, Corporate 28%, PSU NBFCs 27%, Banks 12%, Municipal 1%.
    but not by IREDA itself, so they are flagged *Unconfirmed*. L&T's Rs 500 crore issue is labelled ESG
    rather than green. Labels matter for whether investors can count the bonds towards green mandates.
 
-## Use
+## API
+
+The tracker is also a FastAPI service (`api/main.py`, interactive docs at `/docs`).
+
+| Endpoint | Returns |
+|---|---|
+| `GET /deals` | Filter by `instrument`, `issuer_type`, `status`, `year`, `since`/`until`, `issuer`, `min_usd_mn`; sort by date or size |
+| `GET /deals/{deal_id}` | One deal with pricing, lenders, use of proceeds or KPIs, and source |
+| `GET /summary?since=&until=` | Totals and shares by instrument, issuer type and year; largest deal |
+| `GET /issuers` | Issuers ranked by green / ESG debt raised |
+| `GET /sovereign/auctions` | Every sovereign green bond auction outcome |
+| `GET /sovereign/greenium` | Greenium history, failed auctions and the takeaway |
+| `GET /sll/kpis` | Which sustainability-linked loans actually disclose their KPIs |
+| `GET /fx` | Conversion rates used |
+
+```bash
+pip install -r requirements.txt
+uvicorn api.main:app --reload        # http://127.0.0.1:8000/docs
+pytest -q                            # 9 tests
+```
+
+Deploy: `render.yaml` (Render free tier) or `Dockerfile`.
+
+## Command line
 
 ```bash
 pip install pandas openpyxl
